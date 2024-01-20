@@ -158,9 +158,9 @@ function buyWeapon() {
       currentWeapon++;
       goldText.innerText = gold;
       let newWeapon = weapons[currentWeapon].name;
-      text.innerText = "You now have a " + newWeapon + ".";
+      text.innerText = `You now have a ${newWeapon}.`;
       inventory.push(newWeapon);
-      text.innerText += " In your inventory you have: " + inventory + ".";
+      text.innerText += ` In your inventory you have: ${inventory}.`;
     } else {
       text.innerText = "You do not have enough gold to buy a weapon.";
     }
@@ -176,8 +176,8 @@ function sellWeapon() {
     gold += 15;
     goldText.innerText = gold;
     let currentWeapon = inventory.shift();
-    text.innerText = "You sold a " + currentWeapon + ".";
-    text.innerText += " In your inventory you have:" + inventory + ".";
+    text.innerText = `You sold a ${currentWeapon}.`;
+    text.innerText += ` In your inventory you have:${inventory}.`;
   } else {
     text.innerText = "Don't sell your only weapon!";
   }
@@ -207,9 +207,9 @@ function goFight() {
 }
 
 function attack() {
-  text.innerText = "The " + monsters[fighting].name + " attacks.";
+  text.innerText = `The ${monsters[fighting].name} attacks.`;
   text.innerText +=
-    " You attack it with your " + weapons[currentWeapon].name + ".";
+    ` You attack it with your ${weapons[currentWeapon].name}.`;
   health -= getMonsterAttackValue(monsters[fighting].level);
   if (isMonsterHit()) {   
     monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;
@@ -224,7 +224,7 @@ function attack() {
     fighting === 2 ? winGame() : defeatMonster();
   }
   if (Math.random() <= .1 && inventory.length !== 1) {
-    text.innerText += " Your " + inventory.pop() + " BREAKS.";
+    text.innerText += ` Your ${inventory.pop()} BREAKS.`;
     currentWeapon --;
   }
 }
@@ -240,7 +240,7 @@ function isMonsterHit() {
 
 function dodge() {
   text.innerText =
-    "You dodge the attack from the " + monsters[fighting].name + ".";
+    `You dodge the attack from the ${monsters[fighting].name}.`;
 }
 
 function defeatMonster() {
@@ -287,7 +287,7 @@ function pick(guess) {
   while (numbers.length < 10) {
     numbers.push(Math.floor(Math.random() * 11))
   }
-  text.innerText = "You picked " + guess + ". Here are the random numbers:\n"; 
+  text.innerText = `You picked ${guess}. Here are the random numbers:\n`; 
   for (let i = 0; i < 10; i++) {
     text.innerText += numbers[i] + "\n";
   }
