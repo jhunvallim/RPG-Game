@@ -5,6 +5,7 @@ let currentWeapon = 0;
 let fighting;
 let monsterHealth;
 let inventory = ["stick"];
+let lastMultipleOf20 = 0;
 
 const button1 = document.querySelector("#button1");
 const button2 = document.querySelector("#button2");
@@ -254,13 +255,14 @@ function defeatMonster() {
   goldText.innerText = gold;
   xpText.innerText = xp;
   update(locations[4]);
-  if (xp >= 10 && xp % 10 === 0) {
+  if (xp >= lastMultipleOf20 + 20) {
+    lastMultipleOf20 += 20;
     health += 10;
     healthText.innerText = health;
     gold += 10;
     goldText.innerText = gold;
     text.innerText += " You gain 10 health and 10 gold.";
-  } 
+  }
 }
 
 function lose() {
