@@ -17,14 +17,15 @@ const monsterStats = document.querySelector("#monsterStats");
 const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
 
-
 //Weapons and monsters constructor functions
 const weapons = [];
 
-function Weapons(name, power) {
-  this.name = name;
-  this.power = power;
-  weapons.push(this);
+class Weapons {
+  constructor(name, power) {
+    this.name = name;
+    this.power = power;
+    weapons.push(this);
+  }
 }
 
 const stick = new Weapons("stick", 5);
@@ -32,30 +33,32 @@ const dagger = new Weapons("dagger", 30);
 const clawHammer = new Weapons("claw hammer", 50);
 const sword = new Weapons("sword", 100);
 
-
 const monsters = [];
 
-function Monsters(name, level, health) {
-  this.name = name;
-  this.level = level;
-  this.health = health;
-  monsters.push(this);
+class Monsters {
+  constructor(name, level, health) {
+    this.name = name;
+    this.level = level;
+    this.health = health;
+    monsters.push(this);
+  }
 }
 
 const slime = new Monsters("slime", 2, 15);
 const fangedBeast = new Monsters("fanged beast", 8, 60);
 const dragon = new Monsters("dragon", 20, 300);
 
-
 //Locations constructor function
 const locations = [];
 
-function Locations(name, buttonText, buttonFunctions, text) {
-  this.name = name;
-  this["button text"] = buttonText;
-  this["button functions"] = buttonFunctions;
-  this.text = text;
-  locations.push(this);
+class Locations {
+  constructor(name, buttonText, buttonFunctions, text) {
+    this.name = name;
+    this["button text"] = buttonText;
+    this["button functions"] = buttonFunctions;
+    this.text = text;
+    locations.push(this);
+  }
 }
 
 const townSquare = new Locations(
@@ -163,7 +166,7 @@ function buyWeapon() {
       let newWeapon = weapons[currentWeapon].name;
       text.innerText = `You now have a ${newWeapon}.`;
       inventory.push(newWeapon);
-      text.innerText += ` In your inventory you have: ${inventory.join(', ')}.`;
+      text.innerText += ` In your inventory you have: ${inventory.join(", ")}.`;
     } else {
       text.innerText = "You do not have enough gold to buy a weapon.";
     }
@@ -180,7 +183,7 @@ function sellWeapon() {
     goldText.innerText = gold;
     let currentWeapon = inventory.shift();
     text.innerText = `You sold a ${currentWeapon}.`;
-    text.innerText += ` In your inventory you have:${inventory.join(', ')}.`;
+    text.innerText += ` In your inventory you have:${inventory.join(", ")}.`;
   } else {
     text.innerText = "Don't sell your only weapon!";
   }
@@ -257,7 +260,7 @@ function defeatMonster() {
     gold += 10;
     goldText.innerText = gold;
     text.innerText += " You gain 10 health and 10 gold.";
-  }
+  } 
 }
 
 function lose() {
